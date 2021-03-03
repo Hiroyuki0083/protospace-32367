@@ -24,8 +24,12 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+    if current_user.id == @prototype.user.id
     @comment = Comment.new
     @comments = @prototype.comments
+    else
+      redirect_to (root_path)
+    end
   end
 
   def update
